@@ -1,0 +1,277 @@
+/* ============================================================
+   EDITORIAL PRECISION — Design System Foundations
+   colors_and_type.css
+
+   "Swiss graphic design meets a modern tech founder's site."
+   White-dominant, typographically-led, surgical black,
+   warm stone/caramel accent used as a whisper.
+
+   Fonts are loaded from Google Fonts (see @import below).
+   If self-hosting, drop the .woff2 files into /fonts and
+   swap the @import for @font-face rules.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,144,300;0,144,400;1,144,300;1,144,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ---------- COLOR · raw palette ---------- */
+  --white:       #FFFFFF;  /* dominant background            */
+  --off-white:   #F7F6F3;  /* section alternation, card bg   */
+  --stone-100:   #EEECE8;  /* subtle borders, dividers       */
+  --stone-400:   #9C9690;  /* muted text, meta labels        */
+  --charcoal:    #1A1A1A;  /* primary text, headings         */
+  --ink:         #0D0D0D;  /* hero name, deepest emphasis    */
+  --accent:      #C8A882;  /* warm caramel — single accent   */
+  --accent-dark: #8B6F47;  /* hover state of accent          */
+
+  /* ---------- COLOR · semantic ---------- */
+  --bg:            var(--white);
+  --bg-alt:        var(--off-white);
+  --surface:       var(--white);
+  --surface-alt:   var(--off-white);
+  --border:        var(--stone-100);
+  --border-strong: var(--charcoal);
+
+  --fg1:        var(--charcoal);   /* primary text       */
+  --fg-emph:    var(--ink);        /* strongest emphasis */
+  --fg2:        var(--stone-400);  /* muted / meta       */
+  --fg-on-dark: var(--white);
+
+  --link:       var(--charcoal);
+  --link-hover: var(--accent-dark);
+
+  /* ---------- TYPE · families ---------- */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-head:    'Instrument Sans', 'Geist', system-ui, -apple-system, sans-serif;
+  --font-body:    'Lora', Georgia, 'Times New Roman', serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ---------- TYPE · weights ---------- */
+  --w-light:  300;
+  --w-reg:    400;
+  --w-med:    500;
+  --w-semi:   600;
+
+  /* ---------- TYPE · fluid sizes ---------- */
+  --size-name:   clamp(64px, 10vw, 128px);
+  --size-h1:     clamp(40px, 6vw, 72px);
+  --size-h2:     48px;
+  --size-h3:     32px;
+  --size-h4:     22px;
+  --size-body:   17px;
+  --size-small:  15px;
+  --size-meta:   12px;
+
+  /* ---------- TYPE · line-height + tracking ---------- */
+  --lh-tight:   1.05;
+  --lh-snug:    1.2;
+  --lh-body:    1.75;
+  --track-tight:  -0.02em;
+  --track-meta:   0.12em;
+  --track-nav:    0.10em;
+
+  /* ---------- SPACING · 8px base ---------- */
+  --space-1:  8px;
+  --space-2:  16px;
+  --space-3:  24px;
+  --space-4:  32px;
+  --space-5:  48px;
+  --space-6:  64px;
+  --space-7:  96px;
+  --space-8:  120px;
+
+  --container:    1200px;
+  --container-pad: 48px;
+  --measure:      480px;   /* ideal prose / bio width */
+  --card-gap:     24px;
+
+  /* ---------- RADIUS ---------- */
+  --radius-none: 0px;       /* buttons, cards — sharp by default */
+  --radius-pill: 2px;       /* tags only — barely-there         */
+
+  /* ---------- BORDERS ---------- */
+  --hairline: 1px solid var(--border);
+  --rule:     1px solid var(--stone-100);
+
+  /* ---------- MOTION ---------- */
+  --ease-editorial: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:   180ms;
+  --dur-mid:    280ms;
+  --dur-card:   320ms;
+  --dur-slow:   400ms;
+
+  /* No box-shadow system by design — elevation is expressed
+     through border-color shifts and translateY, never glow. */
+  --shadow-none: none;
+}
+
+/* ============================================================
+   SEMANTIC TYPE CLASSES
+   Use these directly, or copy the rules into component styles.
+   ============================================================ */
+
+.ep-name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: var(--w-reg);
+  font-size: var(--size-name);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-tight);
+  color: var(--fg-emph);
+}
+
+.ep-h1 {
+  font-family: var(--font-head);
+  font-weight: var(--w-light);
+  font-size: var(--size-h1);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--track-tight);
+  color: var(--fg1);
+}
+
+.ep-h2 {
+  font-family: var(--font-head);
+  font-weight: var(--w-light);
+  font-size: var(--size-h2);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--track-tight);
+  color: var(--fg1);
+}
+
+.ep-h3 {
+  font-family: var(--font-head);
+  font-weight: var(--w-reg);
+  font-size: var(--size-h3);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--track-tight);
+  color: var(--fg1);
+}
+
+.ep-h4 {
+  font-family: var(--font-head);
+  font-weight: var(--w-med);
+  font-size: var(--size-h4);
+  line-height: var(--lh-snug);
+  color: var(--fg1);
+}
+
+.ep-display-serif {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: var(--w-reg);
+}
+
+.ep-body {
+  font-family: var(--font-body);
+  font-weight: var(--w-reg);
+  font-size: var(--size-body);
+  line-height: var(--lh-body);
+  color: var(--fg1);
+}
+
+.ep-body-italic {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: var(--w-reg);
+  font-size: var(--size-body);
+  line-height: var(--lh-body);
+  color: var(--fg1);
+}
+
+.ep-meta {
+  font-family: var(--font-mono);
+  font-weight: var(--w-reg);
+  font-size: var(--size-meta);
+  text-transform: uppercase;
+  letter-spacing: var(--track-meta);
+  color: var(--fg2);
+}
+
+.ep-mono {
+  font-family: var(--font-mono);
+  font-weight: var(--w-reg);
+}
+
+/* ============================================================
+   PRIMITIVES — buttons, tags, rules
+   ============================================================ */
+
+.ep-btn {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: var(--track-nav);
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-none);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--dur-mid) var(--ease-editorial),
+              color var(--dur-mid) var(--ease-editorial),
+              border-color var(--dur-mid) var(--ease-editorial);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ep-btn--primary {
+  background: var(--charcoal);
+  color: var(--white);
+}
+.ep-btn--primary:hover {
+  background: var(--accent);
+  color: var(--charcoal);
+}
+
+.ep-btn--secondary {
+  background: transparent;
+  color: var(--charcoal);
+  border-color: var(--charcoal);
+}
+.ep-btn--secondary:hover {
+  background: var(--charcoal);
+  color: var(--white);
+}
+
+.ep-btn--ghost {
+  background: transparent;
+  color: var(--stone-400);
+  padding: 14px 0;
+  border: none;
+}
+.ep-btn--ghost:hover {
+  color: var(--charcoal);
+}
+
+.ep-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--stone-100);
+  color: var(--stone-400);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  display: inline-block;
+}
+
+.ep-rule {
+  border: none;
+  border-top: 1px solid var(--stone-100);
+  width: 100%;
+  margin: 0;
+}
+
+.ep-card {
+  background: var(--off-white);
+  border: 1px solid var(--stone-100);
+  padding: var(--space-4);
+  border-radius: var(--radius-none);
+  transition: transform var(--dur-card) var(--ease-editorial),
+              border-color var(--dur-card) var(--ease-editorial);
+}
+.ep-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}

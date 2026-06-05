@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} — {{ site.brand }}</title>
+  <link rel="stylesheet" href="/css/portfolio.css">
+  <script src="https://unpkg.com/lucide@0.456.0/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+  <header class="top">
+    <div class="wrap top__inner">
+      <a class="brand" href="/">{{ site.brand }}</a>
+      <nav class="nav">
+        {% for item in site.nav %}
+          <a class="navlink{% if item.key == 'notlar' %} active{% endif %}"
+             href="{{ item.href }}">{{ item.label }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap pagehead">
+    <h1 class="title">{{ title }}</h1>
+    <p class="subtitle">{{ date | date: "%d %B %Y" }}</p>
+  </div>
+
+  <main class="view fade">
+    <div class="wrap">
+      <div class="note not-detay">
+        {{ content }}
+      </div>
+      <a class="yazi-geri" href="/notlar/">← Tüm notlar</a>
+    </div>
+  </main>
+
+  <footer class="wrap">
+    <div class="foot">
+      <span class="foot__mark">AH</span>
+      <span class="foot__meta">© {{ site.year }} {{ site.brand }} — {{ site.location }}</span>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.lucide) window.lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

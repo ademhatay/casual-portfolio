@@ -1,0 +1,17 @@
+{
+  "brand": "Adem Hatay",
+  "bio": "Web & Mobil uygulama geliştiriyor. Oyun geliştiriyor.",
+  "bioEn": "Builds web & mobile apps. Develops games.",
+  "location": "Türkiye",
+  "year": "2026",
+  "socials": [
+    { "key": "github",  "label": "GitHub",  "icon": "github",   "href": "https://github.com/ademhatay" },
+    { "key": "rss",     "label": "RSS",     "icon": "rss",      "href": "/feed.xml" },
+    { "key": "email",   "label": "E-posta",  "icon": "at-sign",  "href": "mailto:hatayadem5@gmail.com" }
+  ],
+  "nav": [
+    { "label": "Yazılar",  "href": "/yazilar/",  "key": "yazilar"  },
+    { "label": "Notlar",   "href": "/notlar/",   "key": "notlar"   },
+    { "label": "Hakkımda", "href": "/hakkimda/", "key": "hakkimda" }
+  ]
+}

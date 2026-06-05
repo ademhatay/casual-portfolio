@@ -1,0 +1,51 @@
+<footer class="wrap">
+  <div class="foot">
+    <span class="foot__mark">AH</span>
+    <span class="foot__meta">© {{ site.year }} {{ site.brand }} — {{ site.location }}</span>
+      <button class="credit" id="creditBtn" aria-label="İlham kaynağı">
+        <span class="credit__expand">{% if locale == 'en' %}inspired by vincentp.me{% else %}vincentp.me'den ilham alındı{% endif %}</span>
+        <span class="credit__mark">✦</span>
+      </button>
+  </div>
+</footer>
+
+
+<!-- External redirect overlay -->
+<div class="ext-overlay" id="extOverlay" role="dialog" aria-modal="true" aria-labelledby="extTitle">
+  <div class="ext-dialog">
+    <p class="ext-dialog__eyebrow">Dış bağlantı</p>
+    <p class="ext-dialog__title" id="extTitle">Başka bir siteye yönlendiriliyorsunuz</p>
+    <p class="ext-dialog__url">vincentp.me</p>
+    <div class="ext-dialog__actions">
+      <a class="ext-dialog__go" href="https://vincentp.me/" target="_blank" rel="noopener noreferrer" id="extGo">
+        Devam et →
+      </a>
+      <button class="ext-dialog__cancel" id="extCancel">İptal</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var btn     = document.getElementById('creditBtn');
+    var overlay = document.getElementById('extOverlay');
+    var cancel  = document.getElementById('extCancel');
+    var go      = document.getElementById('extGo');
+    if (!btn || !overlay) return;
+
+    function openOverlay() { overlay.classList.add('is-open'); go.focus(); }
+    function closeOverlay() { overlay.classList.remove('is-open'); btn.focus(); }
+
+    btn.addEventListener('click', openOverlay);
+    cancel.addEventListener('click', closeOverlay);
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeOverlay();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeOverlay();
+    });
+    go.addEventListener('click', function () {
+      setTimeout(closeOverlay, 200);
+    });
+  })();
+</script>

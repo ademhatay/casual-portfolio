@@ -1,0 +1,23 @@
+---
+title: Notes
+navKey: notes
+pageTitle: Notes
+pageSubtitle: Short-form notes
+translationUrl: /notlar/
+---
+
+<div class="notes">
+  {% for notu in collections['en-not'] %}
+    {% if notu.data.photo1Url %}
+      <div class="note note--photo">
+        <div class="note__date">{{ notu.date | date: "%b %d, %Y" }}</div>
+        <img class="note__photo" src="{{ notu.data.photo1Url }}" alt="{{ notu.data.photo1Alt | default: notu.data.title }}">
+      </div>
+    {% else %}
+      <div class="note">
+        <div class="note__date">{{ notu.date | date: "%b %d, %Y" }}</div>
+        <p class="note__text">{{ notu.data.title }}</p>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>

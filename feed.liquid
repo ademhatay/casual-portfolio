@@ -1,0 +1,43 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.brand }}</title>
+  <subtitle>{{ site.bio }}</subtitle>
+  <link href="https://ademhatay.com/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://ademhatay.com/" rel="alternate" type="text/html"/>
+  <id>https://ademhatay.com/</id>
+  <updated>{{ collections.feed[0].date | date: "%Y-%m-%dT%H:%M:%SZ" }}</updated>
+  <author>
+    <name>{{ site.brand }}</name>
+  </author>
+{% for item in collections.feed %}
+  <entry>
+    <title>{{ item.data.title | xml_escape }}</title>
+    {% if item.data.type == 'yazi' %}
+    <link href="https://ademhatay.com{{ item.url }}" rel="alternate" type="text/html"/>
+    <id>https://ademhatay.com{{ item.url }}</id>
+    {% else %}
+    <link href="https://ademhatay.com/" rel="alternate" type="text/html"/>
+    <id>https://ademhatay.com/#note-{{ item.date | date: "%Y%m%d%H%M" }}</id>
+    {% endif %}
+    <published>{{ item.date | date: "%Y-%m-%dT%H:%M:%SZ" }}</published>
+    <updated>{{ item.date | date: "%Y-%m-%dT%H:%M:%SZ" }}</updated>
+    {% assign ex = item.data.excerpt | default: item.data.summary | default: item.data.description | default: item.data.meta %}
+    {% if ex %}
+    <summary>{{ ex | xml_escape }}</summary>
+    {% endif %}
+    {% if item.data.type == 'yazi' %}
+    <content type="html"><![CDATA[{{ item.content }}]]></content>
+    {% elsif item.data.photo1Url %}
+    <content type="html"><![CDATA[<img src="https://ademhatay.com{{ item.data.photo1Url }}" alt="{{ item.data.title }}">]]></content>
+    {% elsif item.data.videoUrl %}
+    <content type="html"><![CDATA[<p><a href="https://www.youtube.com/watch?v={{ item.data.videoUrl | split: '/embed/' | last | split: '?' | first }}">{{ item.data.title }}</a></p>]]></content>
+    {% else %}
+    <content type="html"><![CDATA[<p>{{ item.data.title | xml_escape }}</p>]]></content>
+    {% endif %}
+  </entry>
+{% endfor %}
+</feed>

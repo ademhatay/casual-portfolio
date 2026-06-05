@@ -1,0 +1,6 @@
+{
+  "layout": "yazi.html",
+  "tags": "yazi",
+  "type": "yazi",
+  "templateEngineOverride": "md"
+}

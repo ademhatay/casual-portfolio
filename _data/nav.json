@@ -1,0 +1,12 @@
+{
+  "tr": [
+    { "label": "Yazılar",  "href": "/yazilar/",   "key": "yazilar"  },
+    { "label": "Notlar",   "href": "/notlar/",    "key": "notlar"   },
+    { "label": "Hakkımda", "href": "/hakkimda/",  "key": "hakkimda" }
+  ],
+  "en": [
+    { "label": "Writing", "href": "/en/writing/", "key": "writing" },
+    { "label": "Notes",   "href": "/en/notes/",   "key": "notes"   },
+    { "label": "About",   "href": "/en/about/",   "key": "about"   }
+  ]
+}

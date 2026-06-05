@@ -1,0 +1,62 @@
+---
+layout: base.html
+title: Ana Sayfa
+navKey: home
+showIntro: true
+pageTitle: Yaşam Akışı
+pageSubtitle: Yazılar ve notlar
+translationUrl: /en/
+---
+
+<div class="feed" id="feed">
+  {% assign feedListesi = collections.feed %}
+  {% for item in feedListesi %}
+    {% if item.data.type == 'yazi' %}
+      <a class="article{% if forloop.index > 5 %} feed--hidden{% endif %}" href="{{ item.url }}">
+        <h2 class="article__title">{{ item.data.title }}</h2>
+        {% assign ex = item.data.excerpt | default: item.data.summary | default: item.data.description | default: item.data.meta %}
+        {% if ex %}<p class="article__ex">{{ ex }}</p>{% endif %}
+        <div class="article__date">{{ item.date | date: "%d %B %Y" }}</div>
+      </a>
+    {% elsif item.data.photo1Url %}
+      <div class="note note--photo{% if forloop.index > 5 %} feed--hidden{% endif %}">
+        <div class="note__date">{{ item.date | date: "%d %b %Y" }}</div>
+        <p class="note__text">{{ item.data.title }}</p>
+        <img class="note__photo" src="{{ item.data.photo1Url }}" alt="{{ item.data.photo1Alt | default: item.data.title }}">
+      </div>
+    {% elsif item.data.videoUrl %}
+      <div class="note note--video{% if forloop.index > 5 %} feed--hidden{% endif %}">
+        <div class="note__date">{{ item.date | date: "%d %b %Y" }}</div>
+        <p class="note__text">{{ item.data.title }}</p>
+        <div class="note__video-wrap">
+          <iframe src="{{ item.data.videoUrl }}" title="{{ item.data.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+    {% else %}
+      <div class="note{% if forloop.index > 5 %} feed--hidden{% endif %}">
+        <div class="note__date">{{ item.date | date: "%d %b %Y" }}</div>
+        <p class="note__text">{{ item.data.title }}</p>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% if collections.feed.size > 5 %}
+  <button class="feed-more" id="feedMore">
+    Daha fazla yükle
+    <span class="feed-more__count">({{ collections.feed.size | minus: 5 }} daha)</span>
+  </button>
+{% endif %}
+
+<script>
+  (function () {
+    var btn = document.getElementById('feedMore');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.feed--hidden').forEach(function (el) {
+        el.classList.remove('feed--hidden');
+      });
+      btn.style.display = 'none';
+    });
+  })();
+</script>

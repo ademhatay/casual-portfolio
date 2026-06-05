@@ -1,0 +1,53 @@
+---
+title: Home
+navKey: home
+pageTitle: Life Stream
+pageSubtitle: Writing and notes, sorted by date
+translationUrl: /
+---
+
+<div class="feed" id="feed">
+  {% assign enFeed = collections['en-feed'] %}
+  {% for item in enFeed %}
+    {% if item.data.type == 'yazi' %}
+      <a class="feed-item feed-item--yazi{% if forloop.index > 5 %} feed-item--hidden{% endif %}"
+         href="{{ item.url }}">
+        <span class="feed-item__type">post</span>
+        <div class="feed-item__body">
+          <h2 class="feed-item__title">{{ item.data.title }}</h2>
+          {% if item.data.excerpt %}<p class="feed-item__ex">{{ item.data.excerpt }}</p>{% endif %}
+        </div>
+        <div class="feed-item__date">{{ item.date | date: "%b %d, %Y" }}</div>
+      </a>
+    {% else %}
+      <div class="feed-item feed-item--not{% if forloop.index > 5 %} feed-item--hidden{% endif %}">
+        <span class="feed-item__type">note</span>
+        <div class="feed-item__body">
+          <p class="feed-item__title">{{ item.data.title }}</p>
+        </div>
+        <div class="feed-item__date">{{ item.date | date: "%b %d, %Y" }}</div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% assign enFeedSize = collections['en-feed'] | size %}
+{% if enFeedSize > 5 %}
+  <button class="feed-more" id="feedMore">
+    Load more
+    <span class="feed-more__count">({{ enFeedSize | minus: 5 }} more)</span>
+  </button>
+{% endif %}
+
+<script>
+  (function () {
+    var btn = document.getElementById('feedMore');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.feed-item--hidden').forEach(function (el) {
+        el.classList.remove('feed-item--hidden');
+      });
+      btn.style.display = 'none';
+    });
+  })();
+</script>

@@ -1,0 +1,20 @@
+---
+layout: base.html
+title: Yazılar
+navKey: yazilar
+showIntro: true
+pageTitle: Yazılar
+pageSubtitle: Yazılar ve Makaleler
+translationUrl: /en/writing/
+---
+
+<div class="articles">
+  {% assign yazilar = collections.yazi | reverse %}
+  {% for yazi in yazilar %}
+    <a class="article" href="{{ yazi.url }}">
+      <h2 class="article__title">{{ yazi.data.title }}</h2>
+      <p class="article__ex">{{ yazi.data.excerpt | default: yazi.data.summary | default: yazi.data.description | default: yazi.data.meta }}</p>
+      <div class="article__date">{{ yazi.date | date: "%d %B %Y" }}</div>
+    </a>
+  {% endfor %}
+</div>

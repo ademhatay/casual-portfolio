@@ -1,0 +1,18 @@
+---
+title: Writing
+navKey: writing
+pageTitle: Writing
+pageSubtitle: Articles & Written Work
+translationUrl: /yazilar/
+---
+
+<div class="articles">
+  {% assign enYazilar = collections['en-yazi'] %}
+  {% for yazi in enYazilar %}
+    <a class="article" href="{{ yazi.url }}">
+      <h2 class="article__title">{{ yazi.data.title }}</h2>
+      <p class="article__ex">{{ yazi.data.excerpt }}</p>
+      <div class="article__date">{{ yazi.date | date: "%b %d, %Y" }}</div>
+    </a>
+  {% endfor %}
+</div>

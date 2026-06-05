@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="{{ locale | default: 'tr' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} — {{ site.brand }}</title>
+  <script>
+    (function () {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/apple-touch-icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/portfolio.css">
+  <script src="https://unpkg.com/lucide@0.456.0/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+  <header class="top">
+    <div class="wrap top__inner">
+      <a class="brand" href="{% if locale == 'en' %}/en/{% else %}/{% endif %}">{{ site.brand }}</a>
+
+      <div class="top__controls">
+        <nav class="nav">
+          {% assign navItems = nav[locale] | default: nav.tr %}
+          {% for item in navItems %}
+            <a class="navlink{% if navKey == item.key %} active{% endif %}"
+               href="{{ item.href }}">{{ item.label }}</a>
+          {% endfor %}
+        </nav>
+
+        <div class="lang-switch">
+          {% if locale == 'en' %}
+            <a class="lang-btn" href="{{ translationUrl | default: '/' }}">TR</a>
+            <span class="lang-btn lang-btn--active">EN</span>
+          {% else %}
+            <span class="lang-btn lang-btn--active">TR</span>
+            <a class="lang-btn" href="{{ translationUrl | default: '/en/' }}">EN</a>
+          {% endif %}
+        </div>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">
+          <i data-lucide="sun" id="iconLight"></i>
+          <i data-lucide="moon" id="iconDark" style="display:none;"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  {% if showIntro %}
+    {% include "intro.html" %}
+  {% endif %}
+
+  <div class="wrap pagehead">
+    <h1 class="title">{{ pageTitle }}</h1>
+    <p class="subtitle">{{ pageSubtitle }}</p>
+  </div>
+
+  <main class="view fade">
+    <div class="wrap">
+      {{ content }}
+    </div>
+  </main>
+
+  {% include "footer.html" %}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.lucide) window.lucide.createIcons();
+
+      var html = document.documentElement;
+      var btn  = document.getElementById('themeToggle');
+      var sun  = document.getElementById('iconLight');
+      var moon = document.getElementById('iconDark');
+
+      function applyTheme(dark) {
+        if (dark) {
+          html.classList.add('dark');
+          sun.style.display  = 'none';
+          moon.style.display = '';
+        } else {
+          html.classList.remove('dark');
+          sun.style.display  = '';
+          moon.style.display = 'none';
+        }
+      }
+
+      applyTheme(localStorage.getItem('theme') === 'dark');
+
+      btn.addEventListener('click', function () {
+        var isDark = html.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        applyTheme(!isDark);
+      });
+    });
+  </script>
+</body>
+</html>

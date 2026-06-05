@@ -1,0 +1,34 @@
+<div class="wrap">
+  <div class="intro">
+    <img
+      class="avatar"
+      src="/assets/avatar.png"
+      alt="Adem Hatay"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+    >
+    <div class="avatar--placeholder" style="display:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+    </div>
+
+    <div class="intro__body">
+      <p class="bio">
+        <strong style="font-weight:500;">{{ site.brand }}</strong>
+        {% if locale == 'en' %}{{ site.bioEn }}{% else %}{{ site.bio }}{% endif %}
+      </p>
+      {% if locale == 'en' %}
+        <a class="contact" href="/en/about/">Get in touch</a>
+      {% else %}
+        <a class="contact" href="/hakkimda/">İletişime geç</a>
+      {% endif %}
+      <div class="socials">
+        {% for s in site.socials %}
+          <a class="social" href="{{ s.href }}" title="{{ s.label }}" aria-label="{{ s.label }}" target="_blank" rel="noopener noreferrer">
+            <i data-lucide="{{ s.icon }}"></i>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+---
+layout: base.html
+title: Notlar
+navKey: notlar
+showIntro: true
+pageTitle: Notlar
+pageSubtitle: Kısa biçimli notlar
+translationUrl: /en/notes/
+---
+
+<div class="notes">
+  {% for notu in collections.not %}
+    {% if notu.data.photo1Url %}
+      <div class="note note--photo">
+        <div class="note__date">{{ notu.date | date: "%d %b %Y" }}</div>
+        <p class="note__text">{{ notu.data.title }}</p>
+        <img class="note__photo" src="{{ notu.data.photo1Url }}" alt="{{ notu.data.photo1Alt | default: notu.data.title }}">
+      </div>
+    {% elsif notu.data.videoUrl %}
+      <div class="note note--video">
+        <div class="note__date">{{ notu.date | date: "%d %b %Y" }}</div>
+        <p class="note__text">{{ notu.data.title }}</p>
+        <div class="note__video-wrap">
+          <iframe src="{{ notu.data.videoUrl }}" title="{{ notu.data.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+    {% else %}
+      <div class="note">
+        <div class="note__date">{{ notu.date | date: "%d %b %Y" }}</div>
+        <p class="note__text">{{ notu.data.title }}</p>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
