@@ -60,11 +60,11 @@ a { color: inherit; }
   letter-spacing: -0.01em; color: var(--ink);
   text-decoration: none;
 }
-/* theme icon visibility via CSS — no JS display toggling needed */
-#iconLight { display: inline-flex; }
-#iconDark  { display: none; }
-html.dark #iconLight { display: none; }
-html.dark #iconDark  { display: inline-flex; }
+/* theme icon visibility via CSS */
+.theme-toggle .lucide-sun  { display: block; }
+.theme-toggle .lucide-moon { display: none; }
+html.dark .theme-toggle .lucide-sun  { display: none; }
+html.dark .theme-toggle .lucide-moon { display: block; }
 
 .theme-toggle {
   background: none; border: none; cursor: pointer; padding: 4px;
