@@ -60,6 +60,9 @@ a { color: inherit; }
   letter-spacing: -0.01em; color: var(--ink);
   text-decoration: none;
 }
+/* speedlify badge */
+speedlify-score { font-size: 11px; }
+
 /* theme icon visibility via CSS */
 .theme-toggle .lucide-sun  { display: block; }
 .theme-toggle .lucide-moon { display: none; }

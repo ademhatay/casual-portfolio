@@ -16,6 +16,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/portfolio.css?v=2">
   <script src="https://unpkg.com/lucide@0.456.0/dist/umd/lucide.min.js"></script>
+  <script src="https://unpkg.com/speedlify-score@1.0.5/speedlify-score.js" type="module"></script>
 </head>
 <body>
 
@@ -24,6 +25,11 @@
       <div class="top__row1">
         <a class="brand" href="{% if locale == 'en' %}/en/{% else %}/{% endif %}">{{ site.brand }}</a>
         <div class="top__controls">
+          <speedlify-score
+            speedlify-url="https://speedlify-ademhatay.netlify.app"
+            hash="ab26b0dc"
+            score
+          ></speedlify-score>
           <div class="lang-switch">
             {% if locale == 'en' %}
               <a class="lang-btn" href="{{ translationUrl | default: '/' }}">TR</a>
