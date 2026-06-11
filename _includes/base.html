@@ -59,10 +59,12 @@
     {% include "intro.html" %}
   {% endif %}
 
+  {% if pageTitle %}
   <div class="wrap pagehead">
     <h1 class="title">{{ pageTitle }}</h1>
     <p class="subtitle">{{ pageSubtitle }}</p>
   </div>
+  {% endif %}
 
   <main class="view fade">
     <div class="wrap">
