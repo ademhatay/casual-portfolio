@@ -206,16 +206,17 @@ html.dark .theme-toggle .lucide-moon { display: block; }
 .note__date { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.04em; color: var(--stone-400); margin-bottom: 12px; }
 .note__text { font-family: var(--font-body); font-size: 17px; line-height: 1.7; color: var(--charcoal); margin: 0; }
 
-/* photo note — full bleed image, no crop */
+/* photo note — full bleed image on top, caption then date below */
 .note--photo { padding: 0; }
-.note--photo .note__date { padding: 24px 32px 12px; margin-bottom: 0; }
-.note--photo .note__text { padding: 8px 32px 20px; margin: 0; }
+.note--photo .note__text { padding: 26px 32px 0; margin: 0; font-size: 19px; }
+.note--photo .note__date { padding: 0 32px 26px; margin: 16px 0 0; }
 .note__photo {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 75vh;
-  object-fit: contain;
+  max-height: 70vh;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* video note */

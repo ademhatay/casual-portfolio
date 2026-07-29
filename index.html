@@ -20,9 +20,9 @@ translationUrl: /en/
       </a>
     {% elsif item.data.photo1Url %}
       <div class="note note--photo{% if forloop.index > 5 %} feed--hidden{% endif %}">
-        <div class="note__date">{{ item.date | date: "%d %b %Y" }}</div>
-        <p class="note__text">{{ item.data.title }}</p>
         <img class="note__photo" src="{{ item.data.photo1Url }}" alt="{{ item.data.photo1Alt | default: item.data.title }}">
+        <p class="note__text">{{ item.data.title }}</p>
+        <div class="note__date">{{ item.date | date: "%A, %d %B %Y" }}</div>
       </div>
     {% elsif item.data.videoUrl %}
       <div class="note note--video{% if forloop.index > 5 %} feed--hidden{% endif %}">

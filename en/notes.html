@@ -10,8 +10,9 @@ translationUrl: /notlar/
   {% for notu in collections['en-not'] %}
     {% if notu.data.photo1Url %}
       <div class="note note--photo">
-        <div class="note__date">{{ notu.date | date: "%b %d, %Y" }}</div>
         <img class="note__photo" src="{{ notu.data.photo1Url }}" alt="{{ notu.data.photo1Alt | default: notu.data.title }}">
+        <p class="note__text">{{ notu.data.title }}</p>
+        <div class="note__date">{{ notu.date | date: "%A, %d %B %Y" }}</div>
       </div>
     {% else %}
       <div class="note">
