@@ -12,11 +12,11 @@ translationUrl: /notlar/
       <div class="note note--photo">
         <img class="note__photo" src="{{ notu.data.photo1Url }}" alt="{{ notu.data.photo1Alt | default: notu.data.title }}">
         <p class="note__text">{{ notu.data.title }}</p>
-        <div class="note__date">{{ notu.date | date: "%A, %d %B %Y" }}</div>
+        <div class="note__date">{{ notu.date | en_date_full }}</div>
       </div>
     {% else %}
       <div class="note">
-        <div class="note__date">{{ notu.date | date: "%b %d, %Y" }}</div>
+        <div class="note__date">{{ notu.date | en_date }}</div>
         <p class="note__text">{{ notu.data.title }}</p>
       </div>
     {% endif %}

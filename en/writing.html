@@ -12,7 +12,7 @@ translationUrl: /yazilar/
     <a class="article" href="{{ yazi.url }}">
       <h2 class="article__title">{{ yazi.data.title }}</h2>
       <p class="article__ex">{{ yazi.data.excerpt }}</p>
-      <div class="article__date">{{ yazi.date | date: "%b %d, %Y" }}</div>
+      <div class="article__date">{{ yazi.date | en_date }}</div>
     </a>
   {% endfor %}
 </div>

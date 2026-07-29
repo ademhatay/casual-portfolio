@@ -17,7 +17,7 @@ translationUrl: /
           <h2 class="feed-item__title">{{ item.data.title }}</h2>
           {% if item.data.excerpt %}<p class="feed-item__ex">{{ item.data.excerpt }}</p>{% endif %}
         </div>
-        <div class="feed-item__date">{{ item.date | date: "%b %d, %Y" }}</div>
+        <div class="feed-item__date">{{ item.date | en_date }}</div>
       </a>
     {% else %}
       <div class="feed-item feed-item--not{% if forloop.index > 5 %} feed-item--hidden{% endif %}">
@@ -25,7 +25,7 @@ translationUrl: /
         <div class="feed-item__body">
           <p class="feed-item__title">{{ item.data.title }}</p>
         </div>
-        <div class="feed-item__date">{{ item.date | date: "%b %d, %Y" }}</div>
+        <div class="feed-item__date">{{ item.date | en_date }}</div>
       </div>
     {% endif %}
   {% endfor %}

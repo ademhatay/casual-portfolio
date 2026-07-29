@@ -5,6 +5,24 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("favicon.ico");
   eleventyConfig.addPassthroughCopy("*.png");
 
+  // Date formatting with an explicit locale. Liquid's built-in `date` filter
+  // follows the host's locale, so the same template rendered on a Turkish Mac
+  // and on the (English) server produced different month and weekday names.
+  const formatDate = (locale, options) => (value) => {
+    const date = value instanceof Date ? value : new Date(value);
+    if (Number.isNaN(date.getTime())) return "";
+    return new Intl.DateTimeFormat(locale, { timeZone: "UTC", ...options }).format(date);
+  };
+
+  const LONG = { day: "2-digit", month: "long", year: "numeric" };
+  const SHORT = { day: "2-digit", month: "short", year: "numeric" };
+
+  eleventyConfig.addFilter("tr_date", formatDate("tr-TR", LONG));
+  eleventyConfig.addFilter("tr_date_short", formatDate("tr-TR", SHORT));
+  eleventyConfig.addFilter("tr_date_full", formatDate("tr-TR", { weekday: "long", ...LONG }));
+  eleventyConfig.addFilter("en_date", formatDate("en-US", SHORT));
+  eleventyConfig.addFilter("en_date_full", formatDate("en-US", { weekday: "long", ...LONG }));
+
   // XML-safe string escaping for RSS feed
   eleventyConfig.addFilter("xml_escape", (str) =>
     String(str ?? "")

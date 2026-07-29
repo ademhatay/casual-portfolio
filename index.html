@@ -16,17 +16,17 @@ translationUrl: /en/
         <h2 class="article__title">{{ item.data.title }}</h2>
         {% assign ex = item.data.excerpt | default: item.data.summary | default: item.data.description | default: item.data.meta %}
         {% if ex %}<p class="article__ex">{{ ex }}</p>{% endif %}
-        <div class="article__date">{{ item.date | date: "%d %B %Y" }}</div>
+        <div class="article__date">{{ item.date | tr_date }}</div>
       </a>
     {% elsif item.data.photo1Url %}
       <div class="note note--photo{% if forloop.index > 5 %} feed--hidden{% endif %}">
         <img class="note__photo" src="{{ item.data.photo1Url }}" alt="{{ item.data.photo1Alt | default: item.data.title }}">
         <p class="note__text">{{ item.data.title }}</p>
-        <div class="note__date">{{ item.date | date: "%A, %d %B %Y" }}</div>
+        <div class="note__date">{{ item.date | tr_date_full }}</div>
       </div>
     {% elsif item.data.videoUrl %}
       <div class="note note--video{% if forloop.index > 5 %} feed--hidden{% endif %}">
-        <div class="note__date">{{ item.date | date: "%d %b %Y" }}</div>
+        <div class="note__date">{{ item.date | tr_date_short }}</div>
         <p class="note__text">{{ item.data.title }}</p>
         <div class="note__video-wrap">
           <iframe src="{{ item.data.videoUrl }}" title="{{ item.data.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -34,7 +34,7 @@ translationUrl: /en/
       </div>
     {% else %}
       <div class="note{% if forloop.index > 5 %} feed--hidden{% endif %}">
-        <div class="note__date">{{ item.date | date: "%d %b %Y" }}</div>
+        <div class="note__date">{{ item.date | tr_date_short }}</div>
         <p class="note__text">{{ item.data.title }}</p>
       </div>
     {% endif %}

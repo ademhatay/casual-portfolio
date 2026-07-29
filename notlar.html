@@ -14,11 +14,11 @@ translationUrl: /en/notes/
       <div class="note note--photo">
         <img class="note__photo" src="{{ notu.data.photo1Url }}" alt="{{ notu.data.photo1Alt | default: notu.data.title }}">
         <p class="note__text">{{ notu.data.title }}</p>
-        <div class="note__date">{{ notu.date | date: "%A, %d %B %Y" }}</div>
+        <div class="note__date">{{ notu.date | tr_date_full }}</div>
       </div>
     {% elsif notu.data.videoUrl %}
       <div class="note note--video">
-        <div class="note__date">{{ notu.date | date: "%d %b %Y" }}</div>
+        <div class="note__date">{{ notu.date | tr_date_short }}</div>
         <p class="note__text">{{ notu.data.title }}</p>
         <div class="note__video-wrap">
           <iframe src="{{ notu.data.videoUrl }}" title="{{ notu.data.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -26,7 +26,7 @@ translationUrl: /en/notes/
       </div>
     {% else %}
       <div class="note">
-        <div class="note__date">{{ notu.date | date: "%d %b %Y" }}</div>
+        <div class="note__date">{{ notu.date | tr_date_short }}</div>
         <p class="note__text">{{ notu.data.title }}</p>
       </div>
     {% endif %}
