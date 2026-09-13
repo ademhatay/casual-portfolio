@@ -4,6 +4,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("favicon.ico");
   eleventyConfig.addPassthroughCopy("*.png");
+  eleventyConfig.addPassthroughCopy("app-ads.txt");
 
   // Date formatting with an explicit locale. Liquid's built-in `date` filter
   // follows the host's locale, so the same template rendered on a Turkish Mac
