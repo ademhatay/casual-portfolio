@@ -382,3 +382,61 @@ html.dark .theme-toggle .lucide-moon { display: block; }
   .fade { animation: none; }
   * { transition: none !important; }
 }
+
+/* ---------- GAMES / HOMEPAGE SHOWCASE ---------- */
+.games { margin-top: 44px; margin-bottom: 14px; }
+.games__heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.games__title { display: flex; align-items: center; gap: 12px; margin: 0; font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 30px; letter-spacing: -0.03em; color: var(--ink); }
+.games__count { font-family: var(--font-mono); font-style: normal; font-size: 11px; color: var(--stone-400); border: 1px solid var(--stone-100); border-radius: 50%; width: 23px; height: 23px; display: grid; place-items: center; }
+.games__list { display: grid; gap: 24px; }
+.game { overflow: hidden; border: 1px solid var(--stone-100); border-radius: 12px; }
+.game__hero { position: relative; isolation: isolate; min-height: 320px; display: flex; align-items: center; background: #101731; overflow: hidden; }
+.game__art { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.game__hero::after { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(10, 16, 37, 0.72), rgba(10, 16, 37, 0.3) 45%, transparent 70%); }
+.game__copy { padding: 36px 40px; width: 52%; }
+.game__headline { margin: 0 0 16px; font-family: var(--font-head); font-size: clamp(30px, 4.5vw, 46px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.08; color: #fff7d6; }
+.game__description { margin: 0; max-width: 280px; font-family: var(--font-head); font-size: 14px; line-height: 1.65; color: #d5d7e4; }
+.game__number { position: absolute; right: 22px; top: 20px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: #e9e5ff; }
+.game__footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 28px; background: var(--off-white); }
+.game__identity { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.game__icon { flex: 0 0 auto; width: 52px; height: 52px; border-radius: 12px; }
+.game__name { margin: 0; font-family: var(--font-head); font-size: 19px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); }
+.game__stores { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; max-width: 100%; }
+.store-badge { display: block; padding: 0; border: 0; background: none; border-radius: 7px; line-height: 0; }
+.store-badge--apple { height: 40px; }
+.store-badge--apple img { display: block; width: auto; height: 40px; }
+.store-badge--apple:focus-visible { outline: 2px solid var(--accent-dark); outline-offset: 4px; }
+.store-badge--apple:hover { opacity: 0.8; }
+.game__android { position: relative; }
+.store-badge--google { width: 135px; height: 40px; display: flex; align-items: center; justify-content: center; }
+.store-badge--google img { width: auto; height: 52px; max-width: none; }
+html[lang='en'] .store-badge--google img { height: 60px; }
+.store-badge:disabled { cursor: not-allowed; }
+.game__soon { position: absolute; top: calc(100% + 3px); width: 100%; text-align: center; font-family: var(--font-mono); font-size: 9px; color: var(--stone-400); }
+
+@media (max-width: 680px) {
+  .games { margin-top: 32px; }
+  .game__hero { min-height: 300px; }
+  .game__art { object-position: 65% center; }
+  .game__hero::after { background: linear-gradient(90deg, rgba(10, 16, 37, 0.9), rgba(10, 16, 37, 0.6) 46%, rgba(10, 16, 37, 0.05)); }
+  .game__copy { padding: 28px 24px; width: 66%; }
+  .game__headline { font-size: 36px; }
+  .game__description { font-size: 13px; }
+  .game__footer { flex-wrap: wrap; gap: 22px; padding: 22px 24px 30px; }
+}
+@media (max-width: 400px) {
+  .game__stores { gap: 8px; }
+  .store-badge--apple, .store-badge--google { height: 36px; }
+  .store-badge--apple img { height: 36px; }
+  .store-badge--google { width: 122px; }
+  .store-badge--google img { height: 47px; }
+  html[lang='en'] .store-badge--google img { height: 54px; }
+  .game__footer { padding-right: 16px; padding-left: 16px; }
+  .game__copy { width: 76%; }
+  .game__headline { font-size: 32px; }
+}
+@media (max-width: 350px) {
+  .game__copy { width: 100%; }
+  .game__headline { font-size: 28px; }
+  .game__description { max-width: 180px; }
+}

@@ -1,0 +1,46 @@
+{% assign gameLocale = locale | default: 'tr' %}
+<section class="games wrap" aria-labelledby="games-title">
+  <div class="games__heading">
+    <h2 id="games-title" class="games__title">{% if gameLocale == 'en' %}My games{% else %}Oyunlarım{% endif %}<span class="games__count">{{ games.size }}</span></h2>
+  </div>
+  <div class="games__list">
+    {% for game in games %}
+    {% assign copy = game[gameLocale] %}
+    <article class="game" aria-labelledby="game-{{ game.id }}">
+      <div class="game__hero">
+        <img class="game__art" src="{{ game.artwork }}" alt="" width="2048" height="878" decoding="async">
+        <div class="game__copy">
+          <p class="game__headline">{{ copy.headline | newline_to_br }}</p>
+          <p class="game__description">{{ copy.description }}</p>
+        </div>
+        <span class="game__number" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+      </div>
+      <div class="game__footer">
+        <div class="game__identity">
+          <img class="game__icon" src="{{ game.icon }}" alt="" width="52" height="52" decoding="async">
+          <div>
+            <h3 class="game__name" id="game-{{ game.id }}">{{ game.name }}</h3>
+          </div>
+        </div>
+        <div class="game__stores">
+          <a class="store-badge store-badge--apple" href="{{ game.appStoreUrl }}" target="_blank" rel="noopener noreferrer" aria-label="{{ game.name }} — {% if gameLocale == 'en' %}Download on the App Store{% else %}App Store’dan indirin{% endif %}">
+            <img src="/assets/store-badges/app-store-{{ gameLocale }}.svg" alt="{% if gameLocale == 'en' %}Download on the App Store{% else %}App Store’dan indirin{% endif %}" width="135" height="45">
+          </a>
+          <div class="game__android">
+            {% if game.googlePlayUrl %}
+            <a class="store-badge store-badge--google" href="{{ game.googlePlayUrl }}" target="_blank" rel="noopener noreferrer" aria-label="{{ game.name }} — {% if gameLocale == 'en' %}Get it on Google Play{% else %}Google Play’den indirin{% endif %}">
+              <img src="/assets/store-badges/google-play-{{ gameLocale }}.png" alt="{% if gameLocale == 'en' %}Get it on Google Play{% else %}Google Play’den indirin{% endif %}" width="169" height="65">
+            </a>
+            {% else %}
+            <button class="store-badge store-badge--google" disabled aria-describedby="android-{{ game.id }}" aria-label="{{ game.name }} — Google Play">
+              <img src="/assets/store-badges/google-play-{{ gameLocale }}.png" alt="{% if gameLocale == 'en' %}Get it on Google Play{% else %}Google Play’den indirin{% endif %}" width="169" height="65">
+            </button>
+            <span class="game__soon" id="android-{{ game.id }}">{% if gameLocale == 'en' %}Coming soon{% else %}Yakında{% endif %}</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>

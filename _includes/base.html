@@ -14,7 +14,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/apple-touch-icon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/portfolio.css?v=2">
+  <link rel="stylesheet" href="/css/portfolio.css?v=3">
   <script src="https://unpkg.com/lucide@0.456.0/dist/umd/lucide.min.js"></script>
   <script src="https://unpkg.com/speedlify-score@4.0.4/speedlify-score.js" type="module"></script>
 </head>
@@ -57,6 +57,10 @@
 
   {% if showIntro %}
     {% include "intro.html" %}
+  {% endif %}
+
+  {% if showGames %}
+    {% include "games.html" %}
   {% endif %}
 
   {% if pageTitle %}
