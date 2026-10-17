@@ -5,7 +5,7 @@
     "artwork": "/assets/games/tap-tap-ball/banner.webp",
     "icon": "/assets/games/tap-tap-ball/icon.webp",
     "appStoreUrl": "https://apps.apple.com/tr/app/tap-tap-ball-action/id6810411287?l=tr",
-    "googlePlayUrl": null,
+    "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.orontesgame.taptapball",
     "tr": {
       "headline": "Tek tık aksiyon",
       "description": "Zıpla, engelleri aş, rekorunu kır. Her dokunuşta yeni bir meydan okuma."
